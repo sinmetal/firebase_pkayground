@@ -10,7 +10,7 @@
 <input type='text' id='nameInput' placeholder='Name'>
 <input type='text' id='messageInput' placeholder='Message'>
 <script>
-      var myDataRef = new Firebase('https://shining-heat-7158.firebaseio.com/');
+      var myDataRef = new Firebase('https://shining-heat-7158.firebaseio.com/chatlog');
       $('#messageInput').keypress(function (e) {
         if (e.keyCode == 13) {
           var name = $('#nameInput').val();
@@ -20,6 +20,9 @@
         }
       });
       myDataRef.on('child_added', function(snapshot) {
+        console.log("myDataRef.on : ");
+        console.log(snapshot.val());
+
         var message = snapshot.val();
         displayChatMessage(message.name, message.text);
       });
